@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Informações Acadêmicas </h4>
+        <h4>Atividade</h4>
     </div>
     <div class="row">
       <ul class="col-sm-12 info-group">
@@ -28,6 +28,9 @@
               <label>Executor:</label>
               <%= @activity.user.email %>
           </li>
+          <li class='info-group-item'>
+            <%= button_to 'Projeto', project_path(@activity.project), class: 'btn btn-default', method: :get %>
+            </li>
       </ul>
     </div>
     <% if manager? @activity%>

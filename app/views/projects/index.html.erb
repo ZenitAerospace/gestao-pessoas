@@ -20,7 +20,9 @@
         project_grid.column name: 'Nome do gestor', negation: true, assoc: :user, attribute: 'email' do |project|
             project.user.email
         end
-   
+        project_grid.column name: 'Ver projeto' do |project|
+            link_to 'Projeto', project_path(project)
+        end
     end %>
 <% else %>
     <h1> Nenhum registro </h1>

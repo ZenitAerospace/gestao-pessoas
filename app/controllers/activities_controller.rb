@@ -18,6 +18,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
+    @activity.project_id = params[:project_id] if params[:project_id]
     authorize Activity, :project_manager?
   end
 

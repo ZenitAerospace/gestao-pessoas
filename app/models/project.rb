@@ -4,5 +4,5 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
 
   belongs_to :user
-  has_many :activites
+  has_many :activities
 end

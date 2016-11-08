@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :searches
   resources :projects
   resources :activities
+  get 'project/:project_id/activities/new' => 'activities#new', as: :new_project_activity
   resources :subjects
 
   devise_for :users, :path => "accounts",
