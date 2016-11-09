@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   has_many :projects
   has_many :activities 
 
+  has_many :notifications
+
   def role?(role)
     equals = false
     equals = role.to_s.eql? self.role.name unless self.role.nil?

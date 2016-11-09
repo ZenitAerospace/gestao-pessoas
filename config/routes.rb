@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications, only: [:show,:update,:index,:destroy]
   resources :professional_informations
   resources :searches
   resources :projects
