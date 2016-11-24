@@ -5,6 +5,7 @@ branches:
   only:
   - master
   - develop
+  - deploy
 
 addons:
   code_climate:
@@ -13,3 +14,18 @@ addons:
 language: ruby
 rvm:
   - 2.2.1
+
+notifications:
+  email:
+    recipients:
+      - furquim.axs@gmail.com
+
+after_success:
+  - "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuh1Xz9zQ9t7Iboul/p4Ba13uGbxx3RRoz2/+wdrug1D5yzXep+KdJ2gGalMUyLdUqQML+6dEazvhdGMd0LlrSr2WGdkd02GnBenQWieEXWD7eUvKthJUsQia6M0dFr40VIEpuH9ISRBRjoXPC0fPeolbcrvfZMbZny1O2cS+bzp/ePPZBWNoIDnYkB2LjbAfliT2YpjWM/fLuwfGc7LrrRBA8vYRQtaics7dibeK5Ws4nKi8QljrDnIF+3UiOFI7nnYUJxvPnvi82ACDSjsQR1EaLF/TJTCGnKXRwIXY5CUNLhp/tQsspJzGkiqxxid9lTWt2cLA6kLp7FN0X0uZbIwxiiK1cbhV+OCdw4kmjy9Ly7+FDwhdo2oUGNMKzclwwPeQKtxMrbVAE5QA1TnJzEsR+1cTAGucnlI0Hsrfj0pZJlgSGe0Q2rkHgVPKuTQiudNo73eofODAsyvu/IwQCkrzvA3i6vcDJD8SX5bPj0xjHDVgy5ah4KOLsU2jK0Cfbmbo2ZAxLiYFzb09vqZkk+aEHirj8bc2DfgbCOZJZrfdjYCkqcNYob5li1Q0LuOP7PliV4eX5mnMqHu7IK5bOMPoAmEVJctoYL3/nMjAqIeBcp8wE13qtlGQpMxaTasOQgXl3vS2AZJY6FRH0dUa3LxwBS18xHTmAT5e0So7uiw== zenit@zenit-server.debian
+' > config/deploy/deploy_id_rsa"
+  - "eval $(ssh-agent)"
+  - "chmod 600 config/deploy/deploy_id_rsa"
+  - "ssh-add config/deploy/deploy_id_rsa"
+  - "gem install capistrano-rails"
+  - "cap production deploy"
+
