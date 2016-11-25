@@ -7,12 +7,10 @@ Realizar busca
 
 <% if @results.present? %>
 
-  <% @results.each do |result, matrix|%>
-    <% matrix.each do |array|%>
-      <% array.each do |element|%>
-        <%= element.email %>
+  <% @results.each do |key, value|%>
+      <% value.each do |user|%>
+          <%= user.email %>
       <% end %>
-    <% end %>
   <% end %>
 
 <% else %>
