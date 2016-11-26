@@ -22,7 +22,9 @@ class SearchesController < ApplicationController
   def find_user(entities)
     users = []
     entities.each do |entity|
-      users << User.find(entity.user_id)
+      if User.where(id: entity.user_id).count > 0
+        users << User.find(entity.user_id)
+      end
     end
     return users
   end
