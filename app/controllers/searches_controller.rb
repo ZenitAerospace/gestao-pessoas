@@ -26,7 +26,14 @@ class SearchesController < ApplicationController
         users << User.find(entity.user_id)
       end
     end
-    return users
+    return sort_by_email(users)
+  end
+
+  def sort_by_email(users)
+    desc = SortEmailDesc.new()
+    asc = SortEmailAsc.new()
+    # users.sort! { |a,b| a.email <=> b.email }
+    asc.sort_email(users)
   end
 
   def search_user(class_entity, name_field, keyword)
