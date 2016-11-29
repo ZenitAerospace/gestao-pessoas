@@ -2,10 +2,21 @@ Realizar busca
 
 <%= form_tag searches_path, :method => 'get'  do %>
   <%= text_field_tag :search, params[:search]%>
+    <% @search = params[:search]  %>
   <%= submit_tag "Busca", :name => nil  %>
 <% end %>
 
 <% if @results.present? %>
+
+  <div>
+    Ordenar por ordem:
+    <li>
+    <%= link_to "crescente", {:action => "index", :search => @search, order: "crescente" } %>
+    </li>
+    <li>
+      <%= link_to "decrescente", {:action => "index", :search => @search, order: "decrescente" } %>
+    </li>
+  </div>
 
   <% @results.each do |key, value|%>
       <% value.each do |user|%>

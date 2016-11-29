@@ -2,38 +2,43 @@ class SearchesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
+    order = params[:order]
     @results = {}
     search = params[:search]
     if search
-      @results = find_user_all(search)
+      @results = find_user_all(search, order)
     end
     authorize Searches
   end
 
-  def find_user_all(keyword)
+  def find_user_all(keyword, order)
     personal_information = search_user(PersonalInformation, :personal_information_id, keyword)
     subject = search_user(Subject, :subject_id, keyword)
-    user_personal_information = find_user(personal_information)
-    user_subject = find_user(subject)
+    user_personal_information = find_user(personal_information, order)
+    user_subject = find_user(subject, order)
     user = { information: user_personal_information, subject: user_subject }
     return user
   end
 
-  def find_user(entities)
+  def find_user(entities, order)
     users = []
     entities.each do |entity|
       if User.where(id: entity.user_id).count > 0
         users << User.find(entity.user_id)
       end
     end
-    return sort_by_email(users)
+    return sort_by_email(users,order)
   end
 
-  def sort_by_email(users)
-    desc = SortEmailDesc.new()
-    asc = SortEmailAsc.new()
+  def sort_by_email(users,order)
+    if params[:order] == "crescente"
+      users_ordened = SortEmailAsc.new()
+    end
+    if params[:order] == "decrescente"
+      users_ordened = SortEmailDesc.new()
+    end
     # users.sort! { |a,b| a.email <=> b.email }
-    asc.sort_email(users)
+    users_ordened.sort_email(users)
   end
 
   def search_user(class_entity, name_field, keyword)
