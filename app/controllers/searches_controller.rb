@@ -34,10 +34,10 @@ class SearchesController < ApplicationController
   def sort_by_email(users,order)
     if order
       if params[:order] == "crescente"
-        users_ordened = SortEmailAsc.new()
+        users_ordened = SortEmailAsc.instance
       end
       if params[:order] == "decrescente"
-        users_ordened = SortEmailDesc.new()
+        users_ordened = SortEmailDesc.instance
       end
       return users_ordened.sort_email(users)
     else
