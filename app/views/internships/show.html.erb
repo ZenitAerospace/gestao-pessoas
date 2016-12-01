@@ -1,6 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Estágio </h4>
+        <div class="contentName">
+            <h4>Estágio</h4>
+       </div>
+         <div class="contentButton">         
+            <%= button_to "Ver perfil professional", [@professional_profile.user,@professional_profile], :class => "btn btn-default", :method => :get %>
+        </div>
     </div>
     <div class="row">
       <ul class="col-sm-12 info-group">
@@ -21,8 +26,5 @@
               <%= @internship.duration %>
           </li>
       </ul>
-    </div>
-    <%= button_to "Editar habilidade extra",  edit_user_professional_profile_internship_path(@professional_profile.user,@professional_profile,@internship), :class => "btn btn-default", :method => :get %>
+    </div>  
 </div>
-
-

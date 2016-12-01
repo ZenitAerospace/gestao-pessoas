@@ -1,10 +1,18 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Editar grade horária</h4>
-  </div>
-  <div class="panel-body">
-
-<%= render 'form' %>
-  </div>
+	<div class="panel-heading">
+	    <div class="contentName">
+	    	<h4>Editar grade horária</h4>
+		</div>
+	    <div class="contentButton">         
+	        <%= button_to "Ver perfil acadêmico", [@academic_information.user,@academic_information], :class => "btn btn-default", :method => :get %>
+	    </div>
+	</div>
+    <div class="row">
+      <ul class="col-sm-12 info-group">
+          <li class='info-group-item'>      
+		  	<center><h5>Clique nas grades abaixo para adicionar as disciplinas que estão sendo cursadas!</h5></center>
+		  	<br>
+			<%= render 'form' %>
+      </ul>
+    </div>
 </div>
-<%= link_to 'Ver perfil acadêmico', [@academic_information.user,@academic_information] %> |

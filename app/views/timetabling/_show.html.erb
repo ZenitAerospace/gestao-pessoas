@@ -1,10 +1,16 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    <h4>Grade horária</h4>
-  </div>
-
-    <div class="panel-body">
-      <ul class="col-lg-24">
+   <div class="panel-heading">
+        <div class="contentName">
+               <h4>Grade horária</h4>
+       </div>
+         <div class="contentButton">
+            <% if see_edit?(@user) %>
+                <%= button_to "Editar grade horário", edit_user_timetabling_path(@user,0), :class => "btn btn-default", :method => :get %>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+     <ul class="col-lg-24">
         <table cellpadding="10" cellspacing="1">
             <thead>
                 <tr>
@@ -27,7 +33,4 @@
         </table>
       </ul>
     </div>
-    <% if see_edit?(@user) %>
-        <%= button_to "Editar grade horário", edit_user_timetabling_path(@user,0), :class => "btn btn-default", :method => :get %>
-    <% end %>
 </div>

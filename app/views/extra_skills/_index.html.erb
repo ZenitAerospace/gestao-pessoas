@@ -1,8 +1,22 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>Habilidades extras </h4>
+        <div class="contentName">
+          <h4>Habilidades extras </h4>
+       </div>
+         <div class="contentButton">
+            <% if see_edit?(@professional_profile.user) %>
+                <%= button_to "Adicionar novas habilidades", new_user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile), :class => "btn btn-default", :method => :get %>
+            <% end %>
+        </div>
     </div>
-    <div class="panel-body">
+    <div class="row">
+      <ul class='col-sm-12 info-group'>
+      <ul class="disok col-lg-24">
+        <% if @professional_profile.informations.empty? %>
+            <div class="alert alert-info" role="alert">Nenhum registro encontrado</div>
+        <% else %>
+            <div class="alert alert-info" role="alert" hidden>Nenhum registro encontrado</div>
+        <%end%>
       <ul class='col-sm-12 info-group'>
         <% informations( @professional_profile.informations, ExtraSkill.name ).each do |extra_skill| %>
         <li class='list-group-item'>
@@ -13,12 +27,12 @@
             </div>
             <div class='col-sm-4'>
               <%= link_to "Editar",  edit_user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :get %>
-              <%= link_to "Excluir",  user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :delete, data:{ confirm: "Certeza?"} %>
+              <%= link_to "Excluir",  user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :delete, data:{ confirm: "Tem certeza que deseja excluir?"} %>
             </div>
           </div>
         </li>
         <% end %>
       </ul>
-      <%= link_to "Novas habilidades", new_user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile), :class => "btn btn-default", :method => :get %> 
     </div>
+    
 </div>
