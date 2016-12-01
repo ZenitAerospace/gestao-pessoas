@@ -2,7 +2,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="contentName">
-          <h4>Busca</h4>
+          <h4><b>Busca</b></h4>
         </div>
     </div>
     <div class="row">
@@ -19,24 +19,36 @@
       </span>
   <% end %>
 
-  
-<% if @results.present? %>
-  <div class="alert alert-info" role="alert" hidden>Não exite usuário com estes parametros: "<%= params[:search] %>". Tente outro!</div>
-
-  <div id="ordem" >
   <br>
-    <h5>Ordenar por ordem:</h5>
-    <%= link_to "crescente", {:action => "index", :search => @search, order: "crescente" } %> | <%= link_to "decrescente", {:action => "index", :search => @search, order: "decrescente" } %>
-  </div>
-    <h5>Resultado da pesquisa</h5>
-    
+<% if @results.present? %>
+  <div class="alert alert-info" role="alert" hidden>Não exite usuário com estes parametros: '<%= params[:search] %>'. Tente outro!</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><h4><b>Resultados da pesquisa</b></h4></div>
+
+  <div class="panel-heading">
+    <%= link_to "Ordem crescente", {:action => "index", :search => @search, order: "crescente" } %> | <%= link_to "Ordem decrescente", {:action => "index", :search => @search, order: "decrescente" } %></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Link</th>
+      </tr>
+    </thead>
   <% @results.each do |key, value|%>
       <% value.each do |user|%>
-          <%= user.email %> | <%= link_to( 'Ver perfil', user) %> <br>
+      <tbody>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= link_to( 'Ver perfil', user)%></td>
+        </tr>
+    </tbody>
       <% end %>
   <% end %>
-
+  </table>
+</div>    
+  
 <% else %>
   <br>
-  <div class="alert alert-info" role="alert">Não exite usuário com estes parametros, tente outro! <%= params[:search] %> .</div>
+  <div class="alert alert-info" role="alert">Não exite usuário com estes parametros: ' <%= params[:search] %> '. Tente outro!</div>
 <% end %>
