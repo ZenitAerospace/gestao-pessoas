@@ -1,31 +1,28 @@
 before_script:
-  - bundle exec rake db:migrate RAILS_ENV=test
-
+- bundle exec rake db:migrate RAILS_ENV=test
 branches:
   only:
   - master
   - develop
   - deploy
-
 addons:
   code_climate:
     repo_token: a87c36225345cd75f1be6a24cc3ffdec4461d603c9f92ff98a80c19af8f81fa7
-
 language: ruby
 rvm:
-  - 2.2.1
-
+- 2.2.1
 notifications:
   email:
     recipients:
-      - furquim.axs@gmail.com
-
+    - furquim.axs@gmail.com
 after_success:
-  - "echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCuh1Xz9zQ9t7Iboul/p4Ba13uGbxx3RRoz2/+wdrug1D5yzXep+KdJ2gGalMUyLdUqQML+6dEazvhdGMd0LlrSr2WGdkd02GnBenQWieEXWD7eUvKthJUsQia6M0dFr40VIEpuH9ISRBRjoXPC0fPeolbcrvfZMbZny1O2cS+bzp/ePPZBWNoIDnYkB2LjbAfliT2YpjWM/fLuwfGc7LrrRBA8vYRQtaics7dibeK5Ws4nKi8QljrDnIF+3UiOFI7nnYUJxvPnvi82ACDSjsQR1EaLF/TJTCGnKXRwIXY5CUNLhp/tQsspJzGkiqxxid9lTWt2cLA6kLp7FN0X0uZbIwxiiK1cbhV+OCdw4kmjy9Ly7+FDwhdo2oUGNMKzclwwPeQKtxMrbVAE5QA1TnJzEsR+1cTAGucnlI0Hsrfj0pZJlgSGe0Q2rkHgVPKuTQiudNo73eofODAsyvu/IwQCkrzvA3i6vcDJD8SX5bPj0xjHDVgy5ah4KOLsU2jK0Cfbmbo2ZAxLiYFzb09vqZkk+aEHirj8bc2DfgbCOZJZrfdjYCkqcNYob5li1Q0LuOP7PliV4eX5mnMqHu7IK5bOMPoAmEVJctoYL3/nMjAqIeBcp8wE13qtlGQpMxaTasOQgXl3vS2AZJY6FRH0dUa3LxwBS18xHTmAT5e0So7uiw== zenit@zenit-server.debian
-' > config/deploy/deploy_id_rsa"
-  - "eval $(ssh-agent)"
-  - "chmod 600 config/deploy/deploy_id_rsa"
-  - "ssh-add config/deploy/deploy_id_rsa"
-  - "gem install capistrano-rails"
-  - "cap production deploy"
+ - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy_id_rsa_ecn_travis -d -a -out config/deploy_id_rsa"
+ - eval $(ssh-agent)
+ - chmod 600 config/deploy/deploy_id_rsa
+ - ssh-add config/deploy/deploy_id_rsa
+ - gem install capistrano-rails
+ - cap production deploy
 
+env:
+  global:
+    secure: eBDWRrwxxufdSJQuHH54V4MzBu2cyMYDUkA3vHq24SCxC8cD8mrVGLMlEnxjRDmItc3Yz3HjiQRrQxFhqhzCpC+awZG6u/6M8rYLQa2DiImD+cJ1+GeYpqm4nGC9iqojYmJp0E4KvpFqRE5DqPKtssSNw3ugPa7zjnoDppisdt48xedTl1ZUWVMRU8lcaj2W9a9K1MNF0+Qp1lQJIdtN8UgO4FY+edIlpN2nm4ed6PuhcONz+OobZC838EgH4d//kGY0mExsWQRPnhX/3zVx7GFNq7OE8p9jO5PYzx3oUOOVs/+noMDqelpmxepfmebRUghxs3SL5/ygASpFLErRQj9CjtUKxMAXbVUWw8SbKbcI2bIDXATLQOn9DR8xjocIOhdbxxULARR1rFa3/vEkfeYMgracZLt/aZ7kWBxsp4CgKcfdzcUkZNjfaNd+nNfpffSmt524uvyD/RF+Kxodq8fQQ2zH8QHMJcIdJhZ1Ovod1qIIq5ywuq7OB7hqZhRJOIFVEEeb/0A0MtUl3F2y/BWzEQn2bMGcrsgC9tCP4kzo0tZyfZBRC7y6n1ALF4fZjgyVaW/pkc0PJuN6kNAX5S/xvSi7gMxvPH6yrZMqeN5KVq7QfkhZqSlQO2HH58XcGGt4ry3q4fL++7co66MYaSDK0eZSTjjroIaonLzpQFQ=
