@@ -27,7 +27,7 @@
             </div>
             <div class='col-sm-4'>
               <%= link_to "Editar",  edit_user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :get %>
-              <%= link_to "Excluir",  user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :delete, data:{ confirm: "Certeza?"} %>
+              <%= link_to "Excluir",  user_professional_profile_extra_skill_path(@professional_profile.user,@professional_profile,extra_skill), :class => "btn btn-default", :method => :delete, data:{ confirm: "Tem certeza que deseja excluir?"} %>
             </div>
           </div>
         </li>
