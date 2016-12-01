@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :activities 
 
   has_many :notifications
+  has_many :activity_observers
 
   def role?(role)
     equals = false
