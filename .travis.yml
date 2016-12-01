@@ -16,7 +16,7 @@ notifications:
     recipients:
     - furquim.axs@gmail.com
 after_success:
- - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy/id_rsa_ecn_travis -d -a -out config/deploy/id_rsa"
+ - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy/id_rsa_enc_travis -d -a -out config/deploy/deploy_id_rsa"
  - eval $(ssh-agent)
  - chmod 600 config/deploy/deploy_id_rsa
  - ssh-add config/deploy/deploy_id_rsa
