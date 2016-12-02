@@ -1,0 +1,28 @@
+
+<%= grid(@activities, show_filters: :when_filtered) do |activity_grid|
+    activity_grid.blank_slate do
+        '<div class="alert alert-info" role="alert">Nenhum registro encontrado</div>'
+    end
+    activity_grid.column name: 'Nome', attribute: 'name' do |activity|
+        activity.name
+    end
+    activity_grid.column name: 'Descrição', attribute: 'description' do |activity|
+        activity.description
+    end
+    activity_grid.column name: 'Data de inío"',attribute: 'begin_date' do |activity|
+      activity.begin_date
+    end
+    activity_grid.column name: 'Data de termino', attribute: 'end_date' do |activity|
+      activity.end_date
+    end
+    activity_grid.column name: 'Ver atividade' do |activity|
+        link_to 'Ver', activity
+    end
+    activity_grid.column name: 'Editar atividade' do |activity|
+        link_to 'Editar', edit_activity_path(activity)
+    end
+    activity_grid.column name: 'Apagar' do |activity|
+        link_to "Apagar",  activity_path(activity), :class => "btn btn-default", :method => :delete, data:{ confirm: "Certeza?"} 
+    end
+end
+%>

@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Atividade</h4>
+    </div>
+    <div class="row">
+      <ul class="col-sm-12 info-group">
+          <li class='info-group-item'>
+            <label>Nome:</label>
+              <%= @activity.name %>
+          </li>
+          <li class='info-group-item'>
+            <label>Descrição resumo:</label>
+              <%= @activity.description %>
+          </li>
+          <li class='info-group-item'>
+              <label>Data de início:</label>
+              <%= @activity.begin_date %>
+          </li>
+          <li class='info-group-item'>
+              <label>Data de término:</label>
+              <%= @activity.end_date %>
+          </li>
+          <li class='info-group-item'>
+              <label>Concluida:</label>
+              <%= @activity.status %>
+          </li>
+          <li class='info-group-item'>
+              <label>Executor:</label>
+              <%= @activity.user.email %>
+          </li>
+          <li class='info-group-item'>
+            <%= button_to 'Projeto', project_path(@activity.project), class: 'btn btn-default', method: :get %>
+            </li>
+      </ul>
+    </div>
+    <% if manager? @activity%>
+            <%= button_to "Editar atividade", edit_activity_path(@activity), :class => "btn btn-default", :method => :get %>
+    <% end %>
+</div>
+
+<%= button_to 'Editar', edit_activity_path(@activity), class: 'btn btn-default', method: :get %>
+<%= button_to 'Voltar', activities_path, class: 'btn btn-default', method: :get  %>

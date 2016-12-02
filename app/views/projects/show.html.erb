@@ -1,26 +1,30 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4>Preencha o formulário </h4>
+    <h4>Projeto </h4>
   </div>
 
   <div class="row">
     <ul class="info-group">
         <li class='info-group-item'>
           <label>Nome do projeto:</label>
-    		  <%= @project.project_name %>
+    		  <%= @project.name %>
         </li>
         <li class='info-group-item'>
           <label>Descrição do projeto:</label>
-            <%= @project.project_description %>
+            <%= @project.description %>
         </li>
         <li class='info-group-item'>
           <label>Nome do gestor:</label>
-            <%= @project.manager_name %>
+            <%= @project.user.email %>
+        </li>
+        <li class='info-group-item'>
+            <%= render partial: 'activities/index', object: {activities: @activities} %> 
+            <%= link_to 'Nova atividade', new_project_activity_path(@project) %>
         </li>
     </ul>
   </div>
 </div>
-
+<ul>
 <%= button_to "Editar", edit_project_path(@project), :class => "btn btn-primary", :method => :get %>
 <%= button_to 'Voltar', projects_path, :class => "btn btn-primary", :method => :get %>
 </div>

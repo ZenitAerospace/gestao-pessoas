@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @notification.message %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @notification.user %>
+</p>
+
+<p>
+  <strong>Viewed:</strong>
+  <%= @notification.viewed %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @notification.title %>
+</p>
+
+<%= link_to 'Back', notifications_path %>

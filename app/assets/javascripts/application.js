@@ -15,3 +15,24 @@
 //= require wice_grid
 //= require twitter/bootstrap
 //= require_tree .
+
+$(document).on('ready', function(){
+    setInterval(notify,30000);
+});
+function notify(){
+    $.ajax({
+     url: '/has_notification',
+     method: 'GET',
+     format: 'JSON',
+     success: function(data,load){
+         console.log(data,load);
+         var valid = JSON.parse(data);
+         if(valid) {
+             $('li a.notification').attr('id','notify');
+         }else{
+             $('li a.notification').attr('id','');
+         }
+     },
+     error: function(){ console.log("error on server");}
+    });
+}

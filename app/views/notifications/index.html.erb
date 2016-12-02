@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notificações</h1>
+
+<%= grid(@notifications, show_filters: :when_filtered) do |notification_grid|
+    notification_grid.blank_slate do
+        '<div class="alert alert-info" role="alert">Nenhum registro encontrado</div>'
+    end
+    notification_grid.column name: 'Visto', attribute: 'viewed' do |notification|
+      if notification.viewed
+          'Visto'
+          else
+              'Nao visto'
+              end
+    end
+    notification_grid.column name: 'Titulo', attribute: 'title' do |notification|
+        notification.title
+    end
+    notification_grid.column name: 'Mensagem', attribute: 'message' do |notification|
+        notification.message
+    end
+    notification_grid.column name: 'Ver notificacao' do |notification|
+        link_to 'Ver', notification
+    end
+    notification_grid.column name: 'Apagar' do |notification|
+        link_to "Apagar",  notification_path(notification), :class => "btn btn-default", :method => :delete, data:{ confirm: "Certeza?"} 
+    end
+end
+%>

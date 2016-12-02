@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  resources :notifications, only: [:show,:update,:index,:destroy]
   resources :professional_informations
   resources :searches
   resources :projects
-  resources :academic_informations
-  resources :users, only: [:index] do
-    get 'edit_role' => 'roles#edit'
-    post 'edit_role' => 'roles#update'
-  end
-
+  resources :activities
+  get 'project/:project_id/activities/new' => 'activities#new', as: :new_project_activity
+  get 'has_notification/' => 'notifications#has_notification'
   resources :subjects
+
   devise_for :users, :path => "accounts",
     controllers: {
       sessions: 'users/sessions',
@@ -50,6 +49,10 @@ Rails.application.routes.draw do
   get "my_academic_information" => "users#my_academic_informations"
   get "my_subjects" => "users#my_subjects"
   get "my_professional_profile" => "users#my_professional_profile"
+
+  # Activities path.
+  get 'activities' => 'activities#index'
+  get 'new_activity' => 'activities#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
