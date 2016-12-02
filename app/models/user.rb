@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
 
   has_many :notifications
   has_many :activity_observers
-
+  def to_s
+    self.email
+  end
   def role?(role)
     equals = false
     equals = role.to_s.eql? self.role.name unless self.role.nil?

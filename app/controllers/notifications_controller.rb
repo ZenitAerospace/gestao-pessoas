@@ -1,15 +1,23 @@
 class NotificationsController < ApplicationController
-  before_action :set_notification, only: [:show, :edit, :update, :destroy]
+  before_action :set_notification, only: [:show,  :update, :destroy]
 
   # GET /notifications
   # GET /notifications.json
   def index
-    @notifications = Notification.all
+    @notifications = initialize_grid(Notification.where(user: current_user))
   end
 
+  # GET /has_notification.json
+  def has_notification
+    notification = Notification.where(user: current_user,viewed: false).count != 0
+    respond_to do |format|
+      format.json { render json: notification }
+    end
+  end
   # GET /notifications/1
   # GET /notifications/1.json
   def show
+    @notification.update(viewed: true)
   end
 =begin
   # GET /notifications/new

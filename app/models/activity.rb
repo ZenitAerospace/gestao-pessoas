@@ -13,8 +13,16 @@ class Activity < ActiveRecord::Base
     has_many :activity_observers
     
     # Observer callbacks
-    after_save { notify_observer(text_save) }
+
+    after_save :attach_save
     after_update { notify_observer(text_update) }
+    def attach_save
+     activity_observer = ActivityObserver.find_or_create_by(user: self.user,
+                                          activity: self)
+     attach(activity_observer)
+     notify_observer(text_save)
+    end
+
     # Messages constants
     def text_save
       "Saved a new activity: #{name}"
