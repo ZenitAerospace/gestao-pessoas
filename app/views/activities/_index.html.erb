@@ -1,32 +1,28 @@
-<h1>Listando as atividades</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome da atividade</th>
-      <th>Descrição resumo</th>
-      <th>Data de início</th>
-      <th>Data de término</th>
-      <th>Foi concluída</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @activities.each do |activity| %>
-      <tr>
-        <td><%= activity.name %></td>
-        <td><%= activity.description %></td>
-        <td><%= activity.begin_date %></td>
-        <td><%= activity.end_date %></td>
-        <td><%= activity.status %></td>
-        <td><%= link_to 'Mostrar', activity %></td>
-        <td><%= link_to 'Editar', edit_activity_path(activity) %></td>
-        <td><%= link_to 'Deletar', activity, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<%= grid(@activities, show_filters: :when_filtered) do |activity_grid|
+    activity_grid.blank_slate do
+        '<div class="alert alert-info" role="alert">Nenhum registro encontrado</div>'
+    end
+    activity_grid.column name: 'Nome', attribute: 'name' do |activity|
+        activity.name
+    end
+    activity_grid.column name: 'Descrição', attribute: 'description' do |activity|
+        activity.description
+    end
+    activity_grid.column name: 'Data de inío"',attribute: 'begin_date' do |activity|
+      activity.begin_date
+    end
+    activity_grid.column name: 'Data de termino', attribute: 'end_date' do |activity|
+      activity.end_date
+    end
+    activity_grid.column name: 'Ver atividade' do |activity|
+        link_to 'Ver', activity
+    end
+    activity_grid.column name: 'Editar atividade' do |activity|
+        link_to 'Editar', edit_activity_path(activity)
+    end
+    activity_grid.column name: 'Apagar' do |activity|
+        link_to "Apagar",  activity_path(activity), :class => "btn btn-default", :method => :delete, data:{ confirm: "Certeza?"} 
+    end
+end
+%>

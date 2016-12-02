@@ -25,10 +25,10 @@ class Activity < ActiveRecord::Base
 
     # Messages constants
     def text_save
-      "Saved a new activity: #{name}"
+      "Salva atividade: #{name}"
     end
     def text_update
-      "Changed the activity: #{name}"
+      "Atividade modificada: #{name}"
     end
     private :text_save,:text_update
 end

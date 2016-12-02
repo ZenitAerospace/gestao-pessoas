@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @activities = @project.activities
+    @activities = initialize_grid(@project.activities)
   end
 
   # GET /projects/new
