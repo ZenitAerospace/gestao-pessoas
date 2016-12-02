@@ -8,6 +8,7 @@ class SearchesController < ApplicationController
     if search
       @results = find_user_all(search, order)
     end
+    @users = initialize_grid(User)
     authorize Searches
   end
 
@@ -48,5 +49,7 @@ class SearchesController < ApplicationController
   def search_user(class_entity, name_field, keyword)
     user = class_entity.select(:name, :id, :user_id).where('name LIKE ?', "%#{keyword}%")
   end
+
+
 
 end
