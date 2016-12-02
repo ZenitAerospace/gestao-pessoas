@@ -1,5 +1,16 @@
-  <h1>Nova disciplina</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Voltar', subjects_path %>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="contentName">
+        	  <h4>Nova disciplina</h4>
+  		 </div>
+         <div class="contentButton">         
+            <%= button_to "Voltar as disciplinas", subjects_path , :class => "btn btn-default", :method => :get %>
+        </div>
+    </div>
+    <div class="row">
+      <ul class="col-sm-12 info-group">
+          <li class='info-group-item'>
+			    <%= render 'form' %>  
+      </ul>
+    </div>  
+</div>

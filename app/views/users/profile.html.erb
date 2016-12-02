@@ -9,6 +9,7 @@
     </p>
 </div>
 <hr>
+
 <% if not @user.personal_information.nil? %>
 
     <% @information=@user.personal_information  %>
@@ -20,7 +21,7 @@
         new_user_personal_information_path(@user), :class => "btn btn-default",
         :method => :get %>
 <% end %>
-
+<hr>
 <% if not @user.academic_information.nil? %>
 
     <% @academic_information=@user.academic_information  %>
@@ -35,7 +36,7 @@
         new_user_academic_information_path(@user), :class => "btn btn-default",
         :method => :get %>
 <% end %>
-
+<hr>
 <% if not @user.professional_profile.nil? %>
     <% @professional_profile = @user.professional_profile %>
     <%= render partial: 'external_projects/index' %>
@@ -44,3 +45,4 @@
 <% elsif @user.eql? current_user or policy(current_user).create? %>
     <%= link_to 'Adicionar informações profissionais', new_user_professional_profile_path(@user) %>
 <% end %>
+<hr>
