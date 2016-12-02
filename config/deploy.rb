@@ -9,6 +9,10 @@ set :repo_url, 'git@github.com:ZenitAerospace/gestao-pessoas.git'
 
 set :branch, :deploy
 
+# SSH private key storage
+set :ssh_options, keys: ["config/deploy/id_rsa_enc_travis"]
+set :tmp_dir, '/home/zenit/tmp'
+
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/zenit/gestao-pessoas'
 
@@ -33,6 +37,8 @@ set :migration_role, :app
 # Default value for :pty is false
 # set :pty, true
 
+
+
 # Default value for :linked_files is []
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
 
@@ -43,4 +49,4 @@ set :migration_role, :app
 set :default_env, { path: "/home/zenit/.rvm/gems/ruby-2.2.1/bin:/home/zenit/.rvm/gems/ruby-2.2.1@global/bin:/home/zenit/.rvm/rubies/ruby-2.2.1/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/zenit/.rvm/bin:/home/zenit/.rvm/bin:/home/zenit/.rvm/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 3
