@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :activities
   get 'project/:project_id/activities/new' => 'activities#new', as: :new_project_activity
+  get 'has_notification/' => 'notifications#has_notification'
   resources :subjects
 
   devise_for :users, :path => "accounts",
