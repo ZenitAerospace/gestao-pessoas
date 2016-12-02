@@ -11,7 +11,6 @@ set :branch, :deploy
 
 # SSH private key storage
 set :ssh_options, keys: ["config/deploy/id_rsa_enc_travis"]
-set :tmp_dir, '/home/zenit/tmp'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/zenit/gestao-pessoas'
@@ -50,3 +49,9 @@ set :default_env, { path: "/home/zenit/.rvm/gems/ruby-2.2.1/bin:/home/zenit/.rvm
 
 # Default value for keep_releases is 5
 set :keep_releases, 3
+
+namespace :deploy do
+    task :restart, role: :app do
+        run "echo a"
+    end
+end
