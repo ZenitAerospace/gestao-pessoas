@@ -16,11 +16,11 @@ set :deploy_to, '/home/zenit/gestao-pessoas'
 
 # Defaults to false
 # Skip migration if files in db/migrate were not modified
-set :conditionally_migrate, true
+set :conditionally_migrate, false
 
 # While migrations looks like a concern of the database layer.
 # Rails migrations are strictly related to the framework. 
-set :migration_role, :app
+set :migration_role, :web
 
 # Default value for :scm is :git
 # set :scm, :git

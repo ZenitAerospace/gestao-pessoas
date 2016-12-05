@@ -22,7 +22,7 @@ after_success:
  - chmod 600 config/deploy/deploy_id_rsa
  - ssh-add config/deploy/deploy_id_rsa
  - gem install capistrano-rails
- - cap production deploy
+ - cap development deploy
 
 env:
   global:
