@@ -6,7 +6,6 @@ set :repo_url, 'git@github.com:ZenitAerospace/gestao-pessoas.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
 set :branch, :deploy
 
 # SSH private key storage
@@ -36,8 +35,6 @@ set :migration_role, :app
 # Default value for :pty is false
 # set :pty, true
 
-
-
 # Default value for :linked_files is []
 # append :linked_files, 'config/database.yml', 'config/secrets.yml'
 
@@ -49,9 +46,3 @@ set :default_env, { path: "/home/zenit/.rvm/gems/ruby-2.2.1/bin:/home/zenit/.rvm
 
 # Default value for keep_releases is 5
 set :keep_releases, 3
-
-namespace :deploy do
-    task :restart, role: :app do
-        run "echo a"
-    end
-end
